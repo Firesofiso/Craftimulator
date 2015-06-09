@@ -12,9 +12,42 @@ namespace AssemblyCSharp
 {
 	public class Person
 	{
+		public Inventory bag;
+		public int id;
+		public string name;
+		public int craftSkill, gatheringSkill;
+
+		//public Area currArea;
+
+		//Initiater
 		public Person ()
 		{
+			craftSkill = 0;
+			gatheringSkill = 0;
 		}
+
+		public void obtainItem(Item a) {
+			bag.addItem(a);
+		}
+
+		public void dropOff(Inventory stock) {
+			for (int i = 0; i < bag.Count ();  i++) {
+				stock.addItem(bag.item (i));
+			}
+		}
+
+		/*
+		public void setArea(Area a) {
+			currArea = a;
+		}
+
+		public Area getArea() {
+			return currArea;
+		}
+
+		*/
+
+
 	}
 }
 

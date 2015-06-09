@@ -12,8 +12,25 @@ namespace AssemblyCSharp
 {
 	public class Recipe
 	{
+		Item part1, part2;
+		Item result;
 		public Recipe ()
 		{
+			
+		}
+
+		public Recipe(Item a, Item b, Item c) {
+			part1 = a;
+			part2 = b;
+			result = c;
+		}
+
+		public Item craftIt(Item a, Item b) {
+			if (a == part1 && b == part2) {
+				return result;	
+			} else {
+				return a;
+			}
 		}
 	}
 }

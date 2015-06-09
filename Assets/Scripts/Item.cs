@@ -8,13 +8,78 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using System;
+using System.Xml;
+using System.Xml.Serialization;
+using UnityEngine;
+
+
 namespace AssemblyCSharp
 {
 	public class Item
 	{
+		[XmlAttribute("name")]
+		public String name;
+
+		public int count;
+		//public Sprite image;
+
 		public Item ()
 		{
+			name = "";
+			count = 0;
 		}
+
+		public Item(String a, Int32 b) {
+			name = a;
+			count = b;
+		}
+
+		public static bool operator ==(Item a, Item b) {
+			if (a.name == b.name) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		public static bool operator !=(Item a, Item b) {
+			if (a.name != b.name) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+
+
+		//---  DEPRECATED ---\\
+
+		//getters and setters
+		//name shouldn't change so it doesn't need a setter
+		//might need a getter though for display purposes
+		public int getCount() {
+			return count;
+		}
+
+		public void setCount(int num) {
+			count = num;
+		}
+
+		public void addCount(int num) {
+			count += num;
+		}
+
+		public void subCount(int num) {
+			count -= num;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+
 	}
+	
+
+
 }
 

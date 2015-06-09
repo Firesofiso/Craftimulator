@@ -8,13 +8,96 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using System;
+using System.Collections.Generic;
+
 namespace AssemblyCSharp
 {
 	public class Inventory
 	{
+		private List<Item> items;
+
 		public Inventory ()
 		{
+			items = new List<Item>();
 		}
+
+		//finds the index of an item in the inventory
+		public int itemIndex(Item toIndex) {
+			for (int i = 0; i < items.Count; i++) {
+				if (items[i] == toIndex) {
+					return i;
+				}
+			}
+			return -1;
+		}
+
+		//this function checks if there is an item in the inventory
+		public bool exists(Item doesExist) {
+			for (int i = 0; i < items.Count; i++) {
+				if (items[i] == doesExist) {
+					return true;
+				}
+			}
+			return false;
+		}
+
+		//adds x amount of items to the inventory
+		public void addItem(Item toAdd, int number) {
+			if (exists(toAdd)) {
+				items[itemIndex(toAdd)].addCount(number);
+			} else {
+				toAdd.setCount(number);
+				items.Add(toAdd);
+			}
+		}
+
+		public void addItem(Item toAdd) {
+			if (exists(toAdd)) {
+				items[itemIndex(toAdd)].addCount(toAdd.getCount());
+			} else {
+				toAdd.setCount(1);
+				items.Add(toAdd);
+			}
+		}
+
+		//removes one item from the inventory
+		public void removeItem(Item toRemove) {
+			items.RemoveAt(itemIndex(toRemove));
+		}
+
+		//removes x items from inventory
+		public void removeItem(Item toRemove, int number) {
+
+			if (items[itemIndex(toRemove)].getCount() - number > 0) {
+				items[itemIndex(toRemove)].subCount(number);
+			} else if (items[itemIndex(toRemove)].getCount() - number <= 0) {
+				removeItem(toRemove);
+			}
+		}
+
+
+		//inventory count
+		public int Count() {
+			return items.Count;
+		}
+
+		public Item item(int index) {
+			return items[index];
+		}
+
+		/*---GETTERS & SETTERS---*/
+
+		//don't know why I would need this but MAAAYBE
+		public void setItems(List<Item> a) {
+			items = a;
+		}
+
+		public List<Item> getItems() {
+			return items;
+		}
+
+
+
 	}
 }
 
