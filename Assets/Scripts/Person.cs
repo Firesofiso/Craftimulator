@@ -13,17 +13,24 @@ namespace AssemblyCSharp
 	public class Person
 	{
 		public Inventory bag;
-		public int id;
+		//public int id;
 		public string name;
 		public int craftSkill, gatheringSkill;
 
-		//public Area currArea;
+		public Area currArea;
 
 		//Initiater
 		public Person ()
 		{
+			bag = new Inventory();
 			craftSkill = 0;
 			gatheringSkill = 0;
+		}
+
+		public Person(string n, int cSkill, int gSkill) {
+			name = n;
+			craftSkill = cSkill;
+			gatheringSkill = gSkill;
 		}
 
 		public void obtainItem(Item a) {
@@ -36,7 +43,7 @@ namespace AssemblyCSharp
 			}
 		}
 
-		/*
+
 		public void setArea(Area a) {
 			currArea = a;
 		}
@@ -45,7 +52,14 @@ namespace AssemblyCSharp
 			return currArea;
 		}
 
-		*/
+		public void setName(string n) {
+			name = n;
+		}
+
+		public string getName() {
+			return name;
+		}
+
 
 
 	}

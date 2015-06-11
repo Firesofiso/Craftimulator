@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<AreaDB>
+	<Areas>
+		<Area name="Forest">
+			<Item name="Wood">
+				<id>0</id>
+				<count>1</count>
+			</Item>
+		</Area>
+		<Area name="Mine">
+			<Item name="Iron Ore">
+				<id>1</id>
+				<count>1</count>
+			</Item>
+		</Area>
+		<Area name="Camp">
+			
+		</Area>
+	</Areas>
+</AreaDB>
+

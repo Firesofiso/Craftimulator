@@ -7,21 +7,52 @@ using AssemblyCSharp;
 
 public class GameManager : MonoBehaviour {
 
-	public Inventory inv;
+	//this is to make sure the instance of GameManager is kept through the game.
+	public static GameManager instance = null;
+
+	//public Inventory inv;
+	public Party members;
+
+
+	//data stuff
+	//things to hold all the "Static" information
 	public List<Recipe> recipeBook;
 	public ItemDex iDex;
+	public AreaDB aDex;
+
 
 	//public Text wood_value;
 
+	//Awake is always called before any Start functions
+	void Awake()
+	{
+		//Check if there is a GameManager that has been set
+		if (instance == null)
+		{			
+			//if not set this one as the GameManager
+			instance = this;
+		} else if (instance != this) {
+
+			//if there is one set and it is different, delete this.
+			Destroy(gameObject);    
+		}
+		//Sets this to not be destroyed when reloading scene
+		DontDestroyOnLoad(gameObject);
+	}
 
 	// Use this for initialization
 	void Start () {
-		inv = new Inventory();
 
-		iDex = ItemDex.Load(Path.Combine(Application.dataPath, "XML/database.xml"));
+		//Initialize all the Data
+		//Items & Areas & Recipes & Party
+		iDex = ItemDex.Load(Path.Combine(Application.dataPath, "XML/ItemDB.xml"));
+		aDex = AreaDB.Load(Path.Combine(Application.dataPath, "XML/AreaDB.xml"));
+		members = new Party();
+
+
+		//needs fixin'
 		iniRecipeBook();
 
-		//wood_value.text = "0";
 	}
 	
 	// Update is called once per frame
@@ -71,13 +102,25 @@ public class GameManager : MonoBehaviour {
 	public void addItem(string iName) {
 		int item = findItem(iName);
 		if (item != -1) {
-			inv.addItem(iDex.index[item], 1);
+			members.getInventory().addItem(iDex.index[item], 1);
 		} else {
 			Debug.Log("No item to be added");
 		}
 	}
 
-	public void addWood() {
-		inv.addItem(iDex.index[0], 1);
+
+	/*~~~GETTERS~~~*/
+
+	public Party getParty() {
+		return members;
 	}
+
+	public ItemDex getIDex() {
+		return iDex;
+	}
+
+	public List<Area> getAreas() {
+		return aDex.getAreaList();
+	}
+
 }

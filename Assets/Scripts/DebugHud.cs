@@ -18,11 +18,11 @@ public class DebugHud : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (gMan.inv.exists(new Item("Wood", 1))) {
-			wood_v.text = "" + gMan.inv.getItems()[gMan.inv.itemIndex(new Item("Wood", 1))].getCount();
+		if (gMan.members.getInventory().exists(new Item("Wood", 1))) {
+			wood_v.text = "" + gMan.members.getInventory().getItems()[gMan.members.getInventory().itemIndex(new Item("Wood", 1))].getCount();
 		}
-		if (gMan.inv.exists(new Item("Iron Ore", 1))) {
-			ironOre_v.text = "" + gMan.inv.getItems()[gMan.inv.itemIndex(new Item("Iron Ore", 1))].getCount();
+		if (gMan.members.getInventory().exists(new Item("Iron Ore", 1))) {
+			ironOre_v.text = "" + gMan.members.getInventory().getItems()[gMan.members.getInventory().itemIndex(new Item("Iron Ore", 1))].getCount();
 		}
 	}
 }
