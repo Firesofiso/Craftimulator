@@ -9,6 +9,7 @@ public class Menu : MonoBehaviour
 	private GameManager gMan;
 	
 	public InputField name_field;
+	public Text message;
 	
 	// Use this for initialization
 	void Start () {
@@ -23,6 +24,7 @@ public class Menu : MonoBehaviour
 	public void CreatePerson() {
 		if (name_field.text != "") {
 			Person newPerson = new Person(name_field.text, 0, 0);
+			newPerson.setArea(gMan.getAreaList()[gMan.getAreaDB().findArea("Camp")]);
 			gMan.getParty().addMember(newPerson);
 		}
 	}
@@ -47,6 +49,10 @@ public class Menu : MonoBehaviour
 		} else {
 			Debug.Log("No item to be added");
 		}
+	}
+
+	public void popMessage(string m) {
+		message.text = m;
 	}
 }
 

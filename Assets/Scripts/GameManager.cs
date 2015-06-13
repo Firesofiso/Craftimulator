@@ -119,8 +119,12 @@ public class GameManager : MonoBehaviour {
 		return iDex;
 	}
 
-	public List<Area> getAreas() {
+	public List<Area> getAreaList() {
 		return aDex.getAreaList();
+	}
+
+	public AreaDB getAreaDB() {
+		return aDex;
 	}
 
 }

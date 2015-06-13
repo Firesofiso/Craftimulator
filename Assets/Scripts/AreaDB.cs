@@ -54,6 +54,15 @@ namespace AssemblyCSharp
 		public List<Area> getAreaList() {
 			return areaDex;
 		}
+
+		public int findArea(string a) {
+			for (int i = 0; i < areaDex.Count; i++) {
+				if (areaDex[i].getName().ToLower() == a.ToLower()) {
+					return i;
+				}
+			}
+			return -1;
+		}
 	}
 }
 
