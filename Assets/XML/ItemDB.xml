@@ -2,23 +2,18 @@
 	<Items>
 		<Item name="Wood">
 			<id>0</id>
-			<count>0</count>
 		</Item>
 		<Item name="Iron Ore">
 			<id>1</id>
-			<count>0</count>
 		</Item>
 		<Item name="Wood Plank">
 			<id>2</id>
-			<count>0</count>
 		</Item>
 		<Item name="Iron Bar">
 			<id>3</id>
-			<count>0</count>
 		</Item>
 		<Item name="Iron Sword">
 			<id>4</id>
-			<count>0</count>
 		</Item>
 	</Items>
 </ItemDex>

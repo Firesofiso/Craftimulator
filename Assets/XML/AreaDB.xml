@@ -5,16 +5,16 @@
 			
 		</Area>
 		<Area name="Forest">
-			<Item name="Wood">
+			<resource name="Wood">
 				<id>0</id>
-				<count>1</count>
-			</Item>
+			</resource>
+      <delay>15</delay>
 		</Area>
 		<Area name="Mine">
-			<Item name="Iron Ore">
-				<id>1</id>
-				<count>1</count>
-			</Item>
+      <resource name="Iron Ore">
+        <id>1</id>
+      </resource>
+      <delay>45</delay>
 		</Area>
 	</Areas>
 </AreaDB>

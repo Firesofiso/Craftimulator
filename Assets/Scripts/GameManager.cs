@@ -5,14 +5,22 @@ using System.IO;
 using System.Collections.Generic;
 using AssemblyCSharp;
 
+//CURRENT PROBLEM
+/*
+ * I need to figure out an elegant way to handle the giving of resources based on time.
+ * Coroutines might be the answer.  I want to give each Person/Area their own coroutine.
+ * The problem is that my Person class can't have a coroutine.....
+ * there has to be a way I can do a coroutine for each person!!
+ * 
+ */
+
 public class GameManager : MonoBehaviour {
 
 	//this is to make sure the instance of GameManager is kept through the game.
 	public static GameManager instance = null;
 
 	//public Inventory inv;
-	public Party members;
-
+	public Party pT;
 
 	//data stuff
 	//things to hold all the "Static" information
@@ -47,17 +55,29 @@ public class GameManager : MonoBehaviour {
 		//Items & Areas & Recipes & Party
 		iDex = ItemDex.Load(Path.Combine(Application.dataPath, "XML/ItemDB.xml"));
 		aDex = AreaDB.Load(Path.Combine(Application.dataPath, "XML/AreaDB.xml"));
-		members = new Party();
+		pT = new Party();
 
+        /*
+        for (int i = 0; i < members.getMembers().Count; i++)
+        {
+            members.getMembers()[i].StartCoroutine("GetResource");
+        }
+         */
 
-		//needs fixin'
-		iniRecipeBook();
+        //needs fixin'
+        iniRecipeBook();
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+        Debug.Log("Gather Skill: " + pT.getMembers()[0].GetComponent<Person>().getGather());
+        Debug.Log("Wood: " + pT.getMembers()[0].GetComponent<Person>().getItemCount("Wood"));
+
+        for (int i = 0; i < pT.getMembers().Count; i++)
+        {
+
+        }
 	}
 
 
@@ -77,6 +97,26 @@ public class GameManager : MonoBehaviour {
 
 	}
 	*/
+
+    public IEnumerator giveResource(Person a)
+    {
+        Debug.Log("Coroutine started");
+
+        float delay;
+        if (a.getGather() == 0)
+        {
+            delay = (float)(a.getArea().getDelay());
+        }
+        else
+        {
+            delay = (float)(a.getArea().getDelay() * a.getGather() * 0.05);
+        }
+        if (a.getArea().getName() != "Camp")
+        {
+            a.obtainItem(a.getArea().getResource());
+            yield return new WaitForSeconds(1f);
+        }
+    }
 
 	void iniRecipeBook() {
 		recipeBook = new List<Recipe>();
@@ -102,7 +142,7 @@ public class GameManager : MonoBehaviour {
 	public void addItem(string iName) {
 		int item = findItem(iName);
 		if (item != -1) {
-			members.getInventory().addItem(iDex.index[item], 1);
+			pT.getInventory().addItem(iDex.index[item], 1);
 		} else {
 			Debug.Log("No item to be added");
 		}
@@ -112,7 +152,7 @@ public class GameManager : MonoBehaviour {
 	/*~~~GETTERS~~~*/
 
 	public Party getParty() {
-		return members;
+		return pT;
 	}
 
 	public ItemDex getIDex() {

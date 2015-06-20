@@ -18,6 +18,10 @@ namespace AssemblyCSharp
 	{
 		[XmlAttribute("name")]
 		public string name;
+
+        //how long the person waits to obtain resource - in seconds
+        public int delay;
+
 		public Item resource;
 
 		public Area ()
@@ -27,6 +31,16 @@ namespace AssemblyCSharp
 
 
 		//---GETTERS & SETTERS---
+        public void setDelay(int d)
+        {
+            delay = d;
+        }
+
+        public int getDelay()
+        {
+            return delay;
+        }
+
 		public void setName(string n) {
 			name = n;
 		}

@@ -8,10 +8,10 @@ public class Dispatch : MonoBehaviour
 {
 	public GameManager gMan;
 	Menu menuScript;
-	GameObject popMsg;
+	//GameObject popMsg;
 
 	Party p;
-	List<Person> m;
+	List<GameObject> m;
 	//text to display name
 	public Text mName_T;
 	public Button area_B;
@@ -27,7 +27,7 @@ public class Dispatch : MonoBehaviour
 
 		//Find the Menu Script
 		menuScript = GameObject.Find("MenuObject").GetComponent<Menu>();
-		popMsg = GameObject.Find ("MessageContainer");
+		//popMsg = GameObject.Find ("MessageContainer");
 
 		//Call display function
 		display();
@@ -36,7 +36,7 @@ public class Dispatch : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		Debug.Log(m[0].getArea().getName());
+		Debug.Log(m[0].GetComponent<Person>().getArea().getName());
 	}
 
 	//Displays party members and their locations
@@ -51,7 +51,7 @@ public class Dispatch : MonoBehaviour
 		for(int i = 0; i < m.Count; i++) {
 
 			//get the name for each member in the party
-			mName_T.text = m[i].getName();
+            mName_T.text = m[i].GetComponent<Person>().getName();
 
 			//the first one is instantiated at this scripts position
 			//otherwise instantiate them down 150 pixels.
@@ -79,7 +79,7 @@ public class Dispatch : MonoBehaviour
 						newButton.GetComponentInChildren<Text>().text = gMan.getAreaList()[j].getName ();
 
 						//Grab the necessary info for the buttons function
-						Person a = m[i];
+						Person a = m[i].GetComponent<Person>();
 						Area b = gMan.getAreaList()[j];
 
 						//Set the onclick function for each button.
@@ -99,7 +99,7 @@ public class Dispatch : MonoBehaviour
 						newButton.GetComponentInChildren<Text>().text = gMan.getAreaList()[j].getName ();
 
 						//Grab the necessary info for the buttons function
-						Person a = m[i];
+						Person a = m[i].GetComponent<Person>();
 						Area b = gMan.getAreaList()[j];
 
 						//Set the onclick function for each button.
@@ -178,11 +178,14 @@ public class Dispatch : MonoBehaviour
 		}
 	}
 
+
+    //this function moves member, a, to area, b
 	void moveMember(Person a, Area b) {
 		a.setArea(b);
 
-		menuScript.popMessage(a.getName() + " is moved to " + b.getName());
-		popMsg.GetComponent<Animator>().SetTrigger("FadeIn");
+        string message = a.getName() + " moved to " + b.getName();
+
+		menuScript.popMessage(message);
 	}
 }
 

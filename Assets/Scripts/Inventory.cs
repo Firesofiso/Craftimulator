@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace AssemblyCSharp
 {
@@ -31,6 +32,18 @@ namespace AssemblyCSharp
 			return -1;
 		}
 
+        public int itemIndex(string toIndex)
+        {
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].getName() == toIndex)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
 		//this function checks if there is an item in the inventory
 		public bool exists(Item doesExist) {
 			for (int i = 0; i < items.Count; i++) {
@@ -41,38 +54,34 @@ namespace AssemblyCSharp
 			return false;
 		}
 
+        public bool exists(string doesExist)
+        {
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].getName() == doesExist)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
 		//adds x amount of items to the inventory
 		public void addItem(Item toAdd, int number) {
-			if (exists(toAdd)) {
-				items[itemIndex(toAdd)].addCount(number);
-			} else {
-				toAdd.setCount(number);
-				items.Add(toAdd);
-			}
+            for (int i = 0; i < number; i++)
+            {
+                items.Add(toAdd);
+            }
 		}
 
 		public void addItem(Item toAdd) {
-			if (exists(toAdd)) {
-				items[itemIndex(toAdd)].addCount(toAdd.getCount());
-			} else {
-				toAdd.setCount(1);
-				items.Add(toAdd);
-			}
+            items.Add(toAdd);
 		}
 
-		//removes one item from the inventory
-		public void removeItem(Item toRemove) {
-			items.RemoveAt(itemIndex(toRemove));
-		}
+		//removes an item at index from inventory
+		public void removeItem(Item toRemove, int index) {
 
-		//removes x items from inventory
-		public void removeItem(Item toRemove, int number) {
-
-			if (items[itemIndex(toRemove)].getCount() - number > 0) {
-				items[itemIndex(toRemove)].subCount(number);
-			} else if (items[itemIndex(toRemove)].getCount() - number <= 0) {
-				removeItem(toRemove);
-			}
+            items.RemoveAt(index);
 		}
 
 

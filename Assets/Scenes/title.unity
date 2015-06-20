@@ -133,6 +133,7 @@ MonoBehaviour:
   m_SubmitButton: Submit
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
+  m_RepeatDelay: .5
   m_AllowActivationOnMobileDevice: 0
 --- !u!114 &39634171
 MonoBehaviour:
@@ -159,7 +160,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1001 &45448312
 Prefab:
   m_ObjectHideFlags: 0
@@ -197,7 +198,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 462292, guid: dc27fb7b9368e9843873bba815a68a73, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc27fb7b9368e9843873bba815a68a73, type: 2}
@@ -378,6 +379,7 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
+  m_StereoMirrorMode: 0
 --- !u!4 &889560683
 Transform:
   m_ObjectHideFlags: 0
@@ -456,6 +458,58 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1220362827}
+--- !u!1001 &1263635108
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1876873821}
+    m_Modifications:
+    - target: {fileID: 499520, guid: beef362d3378c254198cd5068e008475, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -639
+      objectReference: {fileID: 0}
+    - target: {fileID: 499520, guid: beef362d3378c254198cd5068e008475, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -305
+      objectReference: {fileID: 0}
+    - target: {fileID: 499520, guid: beef362d3378c254198cd5068e008475, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499520, guid: beef362d3378c254198cd5068e008475, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499520, guid: beef362d3378c254198cd5068e008475, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499520, guid: beef362d3378c254198cd5068e008475, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499520, guid: beef362d3378c254198cd5068e008475, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 499520, guid: beef362d3378c254198cd5068e008475, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: beef362d3378c254198cd5068e008475, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &1263635109 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 499520, guid: beef362d3378c254198cd5068e008475, type: 2}
+  m_PrefabInternal: {fileID: 1263635108}
+--- !u!114 &1263635110 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11454666, guid: beef362d3378c254198cd5068e008475,
+    type: 2}
+  m_PrefabInternal: {fileID: 1263635108}
+  m_Script: {fileID: 11500000, guid: d785b8e71e1a6af43b82cc51a3c7ef03, type: 3}
 --- !u!1 &1570098436
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,13 +585,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1994866163}
+      - m_Target: {fileID: 1263635110}
         m_MethodName: moveScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: CreateCharacter
@@ -669,6 +722,7 @@ RectTransform:
   - {fileID: 1919591886}
   - {fileID: 1570098437}
   - {fileID: 723729241}
+  - {fileID: 1263635109}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
@@ -796,51 +850,3 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1919591885}
---- !u!1001 &1994866162
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 499770, guid: 698f9e7c577dbc445b79b088d22a8712, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 647
-      objectReference: {fileID: 0}
-    - target: {fileID: 499770, guid: 698f9e7c577dbc445b79b088d22a8712, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 303
-      objectReference: {fileID: 0}
-    - target: {fileID: 499770, guid: 698f9e7c577dbc445b79b088d22a8712, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 499770, guid: 698f9e7c577dbc445b79b088d22a8712, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 499770, guid: 698f9e7c577dbc445b79b088d22a8712, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 499770, guid: 698f9e7c577dbc445b79b088d22a8712, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 499770, guid: 698f9e7c577dbc445b79b088d22a8712, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 499770, guid: 698f9e7c577dbc445b79b088d22a8712, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 698f9e7c577dbc445b79b088d22a8712, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &1994866163 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11481092, guid: 698f9e7c577dbc445b79b088d22a8712,
-    type: 2}
-  m_PrefabInternal: {fileID: 1994866162}
-  m_Script: {fileID: 11500000, guid: d785b8e71e1a6af43b82cc51a3c7ef03, type: 3}

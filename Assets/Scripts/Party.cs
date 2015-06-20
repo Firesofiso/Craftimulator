@@ -8,19 +8,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using System;
+using UnityEngine;
 using System.Collections.Generic;
 
 namespace AssemblyCSharp
 {
 	public class Party
 	{
-		public List<Person> theParty;
+		public List<GameObject> theParty;
 
 		public Inventory stock;
 
 		public Party ()
 		{
-			theParty = new List<Person>();
+			theParty = new List<GameObject>();
 			stock = new Inventory();
 		}
 
@@ -34,15 +35,15 @@ namespace AssemblyCSharp
 			return stock;
 		}
 
-		public List<Person> getMembers() {
+		public List<GameObject> getMembers() {
 			return theParty;
 		}
 
-		public void addMember(Person toAdd) {
+		public void addMember(GameObject toAdd) {
 			theParty.Add(toAdd);
 		}
 
-		public void removeMember(Person toRemove) {
+		public void removeMember(GameObject toRemove) {
 			theParty.Remove(toRemove);
 		}
 	}

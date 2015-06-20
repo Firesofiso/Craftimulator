@@ -20,18 +20,17 @@ namespace AssemblyCSharp
 		[XmlAttribute("name")]
 		public String name;
 
-		public int count;
+		public int id;
 		//public Sprite image;
 
 		public Item ()
 		{
-			name = "";
-			count = 0;
+            name = "";
 		}
 
-		public Item(String a, Int32 b) {
+		public Item(string a, int b) {
 			name = a;
-			count = b;
+			id = b;
 		}
 
 		public static bool operator ==(Item a, Item b) {
@@ -55,26 +54,26 @@ namespace AssemblyCSharp
 
 		//getters and setters
 		//name shouldn't change so it doesn't need a setter
-		//might need a getter though for display purposes
-		public int getCount() {
-			return count;
-		}
+		//might need a getter though for display purpose
 
-		public void setCount(int num) {
-			count = num;
-		}
+        public void setName(string newName)
+        {
+            name = newName;
+        }
 
-		public void addCount(int num) {
-			count += num;
-		}
-
-		public void subCount(int num) {
-			count -= num;
-		}
-
-		public String getName() {
+        public string getName() {
 			return name;
 		}
+
+        public void setID(int newID)
+        {
+            id = newID;
+        }
+
+        public int getID()
+        {
+            return id;
+        }
 
 
 	}

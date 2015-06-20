@@ -8,30 +8,73 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using System;
+using UnityEngine;
+using System.Collections;
+
 namespace AssemblyCSharp
 {
-	public class Person
+	public class Person : MonoBehaviour
 	{
 		public Inventory bag;
 		//public int id;
 		public string name;
 		public int craftSkill, gatheringSkill;
+        public float lifeInSeconds, lastGatherSec;
 
-		public Area currArea;
+        public Area currArea;
 
-		//Initiater
-		public Person ()
-		{
-			bag = new Inventory();
-			craftSkill = 0;
-			gatheringSkill = 0;
-		}
-
-		public Person(string n, int cSkill, int gSkill) {
+		public void createPerson(string n, int cSkill, int gSkill) {
+            bag = new Inventory();
 			name = n;
 			craftSkill = cSkill;
 			gatheringSkill = gSkill;
+            lifeInSeconds = Time.time;
+            //lastGatherSec = Time.time;
+            DontDestroyOnLoad(transform.gameObject);
 		}
+
+        /*
+        void Update()
+        {
+            StartCoroutine(gatherCoroutine());
+        }
+        */
+
+        public void StartGathering()
+        {
+            StartCoroutine(gatherCoroutine());
+        }
+
+        public IEnumerator gatherCoroutine()
+        {
+            Debug.Log("Coroutine started");
+            while (true)
+            {
+                float delay;
+                if (gatheringSkill == 0)
+                {
+                    delay = (float)(currArea.getDelay());
+                }
+                else
+                {
+                    delay = (float)(currArea.getDelay() * gatheringSkill * 0.05);
+                }
+                yield return new WaitForSeconds(delay);
+                gather();
+            }
+            
+            
+        }
+
+        //gather resource from current area
+        public void gather()
+        {
+            if (currArea.getName() != "Camp") { 
+                bag.addItem(currArea.getResource()); 
+                Debug.Log("In " + currArea.getName() + " getting " + currArea.getResource().getName());
+            }
+            //lastGatherSec = Time.time;
+        }
 
 		public void obtainItem(Item a) {
 			bag.addItem(a);
@@ -43,7 +86,31 @@ namespace AssemblyCSharp
 			}
 		}
 
+        public int getItemCount(string i)
+        {
 
+            int count = 0;
+
+            if (bag.exists(i))
+            {
+                for (int j = 0; j < bag.getItems().Count; j++)
+                {
+                    if (bag.getItems()[j].getName() == i)
+                    {
+                        count++;
+                    }
+                }
+                return count;
+            }
+            else
+            {
+                return 0;
+            }
+
+        }
+
+
+        //~~~GETTERS & SETTERS~~~
 		public void setArea(Area a) {
 			currArea = a;
 		}
@@ -60,6 +127,20 @@ namespace AssemblyCSharp
 			return name;
 		}
 
+        public Inventory getBag()
+        {
+            return bag;
+        }
+
+        public void setGather(int g)
+        {
+            gatheringSkill = g;
+        }
+
+        public int getGather()
+        {
+            return gatheringSkill;
+        }
 
 
 	}
