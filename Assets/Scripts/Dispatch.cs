@@ -29,8 +29,11 @@ public class Dispatch : MonoBehaviour
 		menuScript = GameObject.Find("MenuObject").GetComponent<Menu>();
 		//popMsg = GameObject.Find ("MessageContainer");
 
+        
+
 		//Call display function
 		display();
+        transform.localScale = new Vector3((float)0.07029877, (float)0.07029877, 1);
 	}
 	
 	// Update is called once per frame
@@ -43,7 +46,7 @@ public class Dispatch : MonoBehaviour
 	//Buttons to choose what area to send them to
 	void display() {
 
-		Debug.Log("Display Start");
+		//Debug.Log("Display Start");
 
 		//this is the next position to place a text at
 		Vector3 lastPosition = this.transform.position;
@@ -69,18 +72,18 @@ public class Dispatch : MonoBehaviour
 
 				//This is essentially the same thing we do for the Name of the people
 				//but for the Area buttons instead
-				for (int j = 0; j < gMan.getAreaList().Count; j++) {
+				for (int j = 0; j < gMan.getAreas().Count; j++) {
 					if (j == 0) {
 						
 						//Instantiate
 						Button newButton = Instantiate(area_B, bStartPos, Quaternion.identity) as Button;
 
 						//Sets the text of the button to be the name of the Area
-						newButton.GetComponentInChildren<Text>().text = gMan.getAreaList()[j].getName ();
+                        newButton.GetComponentInChildren<Text>().text = gMan.getAreas()[j].GetComponent<Area>().getName();
 
 						//Grab the necessary info for the buttons function
 						Person a = m[i].GetComponent<Person>();
-						Area b = gMan.getAreaList()[j];
+						Area b = gMan.getAreas()[j].GetComponent<Area>();
 
 						//Set the onclick function for each button.
 						newButton.onClick.AddListener(() => moveMember(a, b));
@@ -96,11 +99,11 @@ public class Dispatch : MonoBehaviour
 						Button newButton = Instantiate(area_B, lastPos, Quaternion.identity) as Button;
 
 						//Sets the text of the button to be the name of the Area
-						newButton.GetComponentInChildren<Text>().text = gMan.getAreaList()[j].getName ();
+                        newButton.GetComponentInChildren<Text>().text = gMan.getAreas()[j].GetComponent<Area>().getName();
 
 						//Grab the necessary info for the buttons function
 						Person a = m[i].GetComponent<Person>();
-						Area b = gMan.getAreaList()[j];
+						Area b = gMan.getAreas()[j].GetComponent<Area>();
 
 						//Set the onclick function for each button.
 						newButton.onClick.AddListener(() => moveMember(a, b));
@@ -125,12 +128,12 @@ public class Dispatch : MonoBehaviour
 				Vector3 bStartPos = new Vector3(this.transform.position.x + 50, this.transform.position.y);
 				Vector3 lastPos = bStartPos;
 				
-				for (int j = 0; j < gMan.getAreaList().Count; j++) {
+				for (int j = 0; j < gMan.getAreas().Count; j++) {
 					if (j == 0) {
 						
 						//Instantiate
 						Button newButton = Instantiate(area_B, bStartPos, Quaternion.identity) as Button;
-						newButton.GetComponentInChildren<Text>().text = gMan.getAreaList()[j].getName ();
+                        newButton.GetComponentInChildren<Text>().text = gMan.getAreas()[j].GetComponent<Area>().getName();
 						newButton.transform.SetParent(this.transform);
 					} else {
 						
@@ -138,7 +141,7 @@ public class Dispatch : MonoBehaviour
 						
 						//Instantiate
 						Button newButton = Instantiate(area_B, lastPos, Quaternion.identity) as Button;
-						newButton.GetComponentInChildren<Text>().text = gMan.getAreaList()[j].getName ();
+                        newButton.GetComponentInChildren<Text>().text = gMan.getAreas()[j].GetComponent<Area>().getName();
 						
 						newButton.transform.SetParent(this.transform);
 					}
@@ -148,7 +151,7 @@ public class Dispatch : MonoBehaviour
 			}
 		}
 
-		Debug.Log("Display End");
+		//Debug.Log("Display End");
 	}
 
 	//Instantiate the area buttons
@@ -158,12 +161,12 @@ public class Dispatch : MonoBehaviour
 		Vector3 bStartPos = new Vector3(this.transform.position.x + 50, this.transform.position.y);
 		Vector3 lastPos = bStartPos;
 
-		for (int j = 0; j < gMan.getAreaList().Count; j++) {
+		for (int j = 0; j < gMan.getAreas().Count; j++) {
 			if (j == 0) {
 
 				//Instantiate
 				Button newButton = Instantiate(area_B, bStartPos, Quaternion.identity) as Button;
-				newButton.GetComponentInChildren<Text>().text = gMan.getAreaList()[j].getName ();
+                newButton.GetComponentInChildren<Text>().text = gMan.getAreas()[j].GetComponent<Area>().getName();
 				newButton.transform.SetParent(this.transform);
 			} else {
 
@@ -171,7 +174,7 @@ public class Dispatch : MonoBehaviour
 
 				//Instantiate
 				Button newButton = Instantiate(area_B, lastPos, Quaternion.identity) as Button;
-				newButton.GetComponentInChildren<Text>().text = gMan.getAreaList()[j].getName ();
+                newButton.GetComponentInChildren<Text>().text = gMan.getAreas()[j].GetComponent<Area>().getName();
 
 				newButton.transform.SetParent(this.transform);
 			}

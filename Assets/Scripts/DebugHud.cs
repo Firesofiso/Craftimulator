@@ -23,7 +23,7 @@ public class DebugHud : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         wood_v.text = "" + p.getMembers()[0].GetComponent<Person>().getItemCount("Wood");
-		if (gMan.getParty().getInventory().exists(new Item("Iron Ore", 1))) {
+		if (gMan.getParty().getInventory().exists("Iron Ore")) {
             ironOre_v.text = "" + p.getMembers()[0].GetComponent<Person>().getItemCount("Iron Ore");
 		}
 	}

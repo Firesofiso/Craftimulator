@@ -8,29 +8,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using System;
-using System.Xml;
-using System.Xml.Serialization;
 using UnityEngine;
 
 
 namespace AssemblyCSharp
 {
-	public class Item
+	public class Item : MonoBehaviour
 	{
-		[XmlAttribute("name")]
 		public String name;
-
+        public int count;
 		public int id;
+
 		//public Sprite image;
 
-		public Item ()
-		{
-            name = "";
-		}
-
-		public Item(string a, int b) {
+		public void createItem(string a, int b) {
 			name = a;
 			id = b;
+            count = 1;
 		}
 
 		public static bool operator ==(Item a, Item b) {
@@ -48,10 +42,6 @@ namespace AssemblyCSharp
 			}
 		}
 
-
-
-		//---  DEPRECATED ---\\
-
 		//getters and setters
 		//name shouldn't change so it doesn't need a setter
 		//might need a getter though for display purpose
@@ -64,6 +54,26 @@ namespace AssemblyCSharp
         public string getName() {
 			return name;
 		}
+
+        public void addCount(int c)
+        {
+            count += c;
+        }
+
+        public void subCount(int c)
+        {
+            count -= c;
+        }
+
+        public void setCount(int c)
+        {
+            count = c;
+        }
+
+        public int getCount()
+        {
+            return count;
+        }
 
         public void setID(int newID)
         {

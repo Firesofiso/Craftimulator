@@ -9,6 +9,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 462292}
   - 114: {fileID: 11487362}
+  - 114: {fileID: 11486324}
+  - 114: {fileID: 11426424}
   m_Layer: 0
   m_Name: GameManager_S
   m_TagString: Untagged
@@ -28,6 +30,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &11426424
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d4efc9aecae52f4d8400167a7fcde79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemBase:
+  - {fileID: 165638, guid: 61c34221a87d77948bc6c997eacf884d, type: 2}
+  - {fileID: 111426, guid: cb3c86e64649c294aa66b7ce9c4988ba, type: 2}
+--- !u!114 &11486324
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca1c59862bc8d344497e3e949d4d9868, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AreaBase:
+  - {fileID: 151756, guid: 2345e0b78adbede4694bd2bc4daceaf6, type: 2}
+  - {fileID: 122504, guid: b626cc8f93e13c540a676e7613843e8a, type: 2}
+  - {fileID: 182884, guid: 14b38ce00f4b6214884faa5cb86d3a4b, type: 2}
 --- !u!114 &11487362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -39,14 +70,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d28777baffd42d419f59e07a5cab96f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wood_value: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: ItemBase.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: AreaBase.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ItemBase.Array.data[0]
+      value: 
+      objectReference: {fileID: 165638, guid: 61c34221a87d77948bc6c997eacf884d, type: 2}
+    - target: {fileID: 0}
+      propertyPath: AreaBase.Array.data[0]
+      value: 
+      objectReference: {fileID: 151756, guid: 2345e0b78adbede4694bd2bc4daceaf6, type: 2}
+    - target: {fileID: 0}
+      propertyPath: AreaBase.Array.data[1]
+      value: 
+      objectReference: {fileID: 122504, guid: b626cc8f93e13c540a676e7613843e8a, type: 2}
+    - target: {fileID: 0}
+      propertyPath: AreaBase.Array.data[2]
+      value: 
+      objectReference: {fileID: 182884, guid: 14b38ce00f4b6214884faa5cb86d3a4b, type: 2}
+    - target: {fileID: 0}
+      propertyPath: ItemBase.Array.data[1]
+      value: 
+      objectReference: {fileID: 111426, guid: cb3c86e64649c294aa66b7ce9c4988ba, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 103976}

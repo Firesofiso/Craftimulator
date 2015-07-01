@@ -25,7 +25,8 @@ namespace AssemblyCSharp
 
 		public void createPerson(string n, int cSkill, int gSkill) {
             bag = new Inventory();
-			name = n;
+            bag.setMax(8);
+            name = n;
 			craftSkill = cSkill;
 			gatheringSkill = gSkill;
             lifeInSeconds = Time.time;
@@ -33,12 +34,18 @@ namespace AssemblyCSharp
             DontDestroyOnLoad(transform.gameObject);
 		}
 
-        /*
+
+        void Start()
+        {
+            //bag = GetComponent<Inventory>();
+            
+        }
+        
         void Update()
         {
-            StartCoroutine(gatherCoroutine());
+            
         }
-        */
+        
 
         public void StartGathering()
         {
@@ -69,14 +76,15 @@ namespace AssemblyCSharp
         //gather resource from current area
         public void gather()
         {
-            if (currArea.getName() != "Camp") { 
-                bag.addItem(currArea.getResource()); 
-                Debug.Log("In " + currArea.getName() + " getting " + currArea.getResource().getName());
+            if (currArea.getName() != "Camp") {
+
+                bag.addItem(currArea.getResource(), 5); 
+                //Debug.Log("In " + currArea.getName() + " getting " + currArea.getResource().GetComponent<Item>().getName());
             }
             //lastGatherSec = Time.time;
         }
 
-		public void obtainItem(Item a) {
+		public void obtainItem(GameObject a) {
 			bag.addItem(a);
 		}
 
@@ -88,19 +96,9 @@ namespace AssemblyCSharp
 
         public int getItemCount(string i)
         {
-
-            int count = 0;
-
             if (bag.exists(i))
             {
-                for (int j = 0; j < bag.getItems().Count; j++)
-                {
-                    if (bag.getItems()[j].getName() == i)
-                    {
-                        count++;
-                    }
-                }
-                return count;
+                return bag.item(bag.itemIndex(i)).GetComponent<Item>().getCount();
             }
             else
             {

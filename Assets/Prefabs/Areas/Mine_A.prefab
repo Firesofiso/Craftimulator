@@ -1,49 +1,47 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &191610
+--- !u!1 &182884
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 402304}
-  - 114: {fileID: 11426558}
+  - 4: {fileID: 491908}
+  - 114: {fileID: 11434644}
   m_Layer: 0
-  m_Name: Person
+  m_Name: Mine_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &402304
+--- !u!4 &491908
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 191610}
+  m_GameObject: {fileID: 182884}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 603.125488, y: 325.484222, z: .386756659}
+  m_LocalPosition: {x: -3.17935586, y: -2.55097961, z: 46.4602585}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11426558
+--- !u!114 &11434644
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 191610}
+  m_GameObject: {fileID: 182884}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2efeb070fb06bb348bc728a7eedd4ce0, type: 3}
+  m_Script: {fileID: 11500000, guid: c03b383ed2a52aa4bacd008e59e599a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
-  craftSkill: 0
-  gatheringSkill: 0
-  lifeInSeconds: 0
-  lastGatherSec: 0
+  name: Mine
+  delay: 10
+  resource: {fileID: 165638, guid: 61c34221a87d77948bc6c997eacf884d, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -53,5 +51,5 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 191610}
+  m_RootGameObject: {fileID: 182884}
   m_IsPrefabParent: 1

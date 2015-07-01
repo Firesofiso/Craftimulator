@@ -14,15 +14,14 @@ using UnityEngine;
 
 namespace AssemblyCSharp
 {
-	public class Area
+	public class Area : MonoBehaviour
 	{
-		[XmlAttribute("name")]
 		public string name;
 
         //how long the person waits to obtain resource - in seconds
         public int delay;
 
-		public Item resource;
+		public GameObject resource;
 
 		public Area ()
 		{
@@ -49,11 +48,11 @@ namespace AssemblyCSharp
 			return name;
 		}
 
-		public void setResource(Item r) {
+		public void setResource(GameObject r) {
 			resource = r;
 		}
 
-		public Item getResource() {
+		public GameObject getResource() {
 			return resource;
 		}
 	}

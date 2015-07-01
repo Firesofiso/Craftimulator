@@ -8,13 +8,13 @@
 			<resource name="Wood">
 				<id>0</id>
 			</resource>
-      <delay>15</delay>
+      <delay>5</delay>
 		</Area>
 		<Area name="Mine">
       <resource name="Iron Ore">
         <id>1</id>
       </resource>
-      <delay>45</delay>
+      <delay>5</delay>
 		</Area>
 	</Areas>
 </AreaDB>

@@ -33,9 +33,10 @@ public class Menu : MonoBehaviour
             //gMan.getParty().addMember(newPerson);
             GameObject newPerson = Instantiate(manne);
             newPerson.GetComponent<Person>().createPerson(name_field.text, 0, 0);
-            newPerson.GetComponent<Person>().setArea(gMan.getAreaList()[gMan.getAreaDB().findArea("Camp")]);
+            newPerson.GetComponent<Person>().setArea(gMan.GetComponent<AreaDex>().findArea("Camp").GetComponent<Area>());
             newPerson.GetComponent<Person>().StartGathering();
-            Debug.Log("Current place: " + newPerson.GetComponent<Person>().getArea().getName());
+            newPerson.transform.SetParent(gMan.transform);
+            //Debug.Log("Current place: " + newPerson.GetComponent<Person>().getArea().getName());
             gMan.getParty().addMember(newPerson);
             
 		}
@@ -43,24 +44,6 @@ public class Menu : MonoBehaviour
 	
 	public void moveScene(string scene) {
 		Application.LoadLevel(scene);
-	}
-
-	int findItem(string a) { 
-		for (int i = 0; i < gMan.getIDex().Count (); i++) {
-			if (gMan.getIDex().index[i].getName() == a) {
-				return i;
-			}
-		}
-		return -1;
-	}
-	
-	public void addItem(string iName) {
-		int item = findItem(iName);
-		if (item != -1) {
-			gMan.getParty().getInventory().addItem(gMan.getIDex().index[item], 1);
-		} else {
-			Debug.Log("No item to be added");
-		}
 	}
 
 	public void popMessage(string m) {

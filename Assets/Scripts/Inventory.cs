@@ -15,15 +15,18 @@ namespace AssemblyCSharp
 {
 	public class Inventory
 	{
-		private List<Item> items;
+		private List<GameObject> items;
+
+        int max = 30;
 
 		public Inventory ()
 		{
-			items = new List<Item>();
+			items = new List<GameObject>();
+            items.Capacity = max;
 		}
 
 		//finds the index of an item in the inventory
-		public int itemIndex(Item toIndex) {
+		public int itemIndex(GameObject toIndex) {
 			for (int i = 0; i < items.Count; i++) {
 				if (items[i] == toIndex) {
 					return i;
@@ -36,7 +39,7 @@ namespace AssemblyCSharp
         {
             for (int i = 0; i < items.Count; i++)
             {
-                if (items[i].getName() == toIndex)
+                if (items[i].GetComponent<Item>().getName() == toIndex)
                 {
                     return i;
                 }
@@ -45,7 +48,7 @@ namespace AssemblyCSharp
         }
 
 		//this function checks if there is an item in the inventory
-		public bool exists(Item doesExist) {
+		public bool exists(GameObject doesExist) {
 			for (int i = 0; i < items.Count; i++) {
 				if (items[i] == doesExist) {
 					return true;
@@ -58,7 +61,7 @@ namespace AssemblyCSharp
         {
             for (int i = 0; i < items.Count; i++)
             {
-                if (items[i].getName() == doesExist)
+                if (items[i].GetComponent<Item>().getName() == doesExist)
                 {
                     return true;
                 }
@@ -67,15 +70,41 @@ namespace AssemblyCSharp
         }
 
 		//adds x amount of items to the inventory
-		public void addItem(Item toAdd, int number) {
-            for (int i = 0; i < number; i++)
+		public void addItem(GameObject toAdd, int number) {
+            if (exists(toAdd))
             {
+                items[itemIndex(toAdd)].GetComponent<Item>().addCount(number);
+            }
+            else if (Count() + 1 <= max)
+            {
+                toAdd.GetComponent<Item>().setCount(number);
                 items.Add(toAdd);
+            }
+            else
+            {
+                GameObject.Find("MenuObject").GetComponent<Menu>().popMessage("Inventory is full");
             }
 		}
 
-		public void addItem(Item toAdd) {
-            items.Add(toAdd);
+       
+
+        //this adds an object
+		public void addItem(GameObject toAdd) {
+            if (exists(toAdd))
+            {
+                Debug.Log("Adding Count");
+                items[itemIndex(toAdd)].GetComponent<Item>().addCount(toAdd.GetComponent<Item>().getCount());
+                Debug.Log("Item Count: " + items[itemIndex(toAdd)].GetComponent<Item>().getCount());
+            } 
+            else if (Count() + 1 <= max)
+            {
+                Debug.Log("Adding Item");
+                items.Add(toAdd);
+            }
+            else
+            {
+                GameObject.Find("MenuObject").GetComponent<Menu>().popMessage("Inventory is full");
+            }
 		}
 
 		//removes an item at index from inventory
@@ -90,20 +119,31 @@ namespace AssemblyCSharp
 			return items.Count;
 		}
 
-		public Item item(int index) {
+		public GameObject item(int index) {
 			return items[index];
 		}
 
 		/*---GETTERS & SETTERS---*/
 
 		//don't know why I would need this but MAAAYBE
-		public void setItems(List<Item> a) {
+		public void setItems(List<GameObject> a) {
 			items = a;
 		}
 
-		public List<Item> getItems() {
+		public List<GameObject> getItems() {
 			return items;
 		}
+
+        public void setMax(int m)
+        {
+            max = m;
+            items.Capacity = m;
+        }
+
+        public int getMax()
+        {
+            return max;
+        }
 
 
 
